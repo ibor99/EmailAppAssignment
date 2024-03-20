@@ -17,11 +17,11 @@ namespace EmailApp
             string senderEmail = "badearo99@gmail.com";
             string password = "ytxz ykyy uhsx zlyp";
 
-            MailMessage mail = new MailMessage(senderEmail, recipientEmail);
+            using MailMessage mail = new MailMessage(senderEmail, recipientEmail);
             mail.Subject = "Thx for subscribing";
             mail.Body = "Thank you for subscribing to this ( test )";
 
-            SmtpClient client = new SmtpClient("smtp.gmail.com");
+            using SmtpClient client = new SmtpClient("smtp.gmail.com");
             client.Port = 587;
             client.Credentials = new NetworkCredential(senderEmail, password);
             client.EnableSsl = true;
@@ -34,11 +34,11 @@ namespace EmailApp
             {
                 Console.WriteLine($"Failed to send email : {ex.Message}");
             }
-            finally
-            {
-                mail.Dispose();
-                client.Dispose();
-            }
+            //finally
+            //{
+            //    mail.Dispose();
+            //    client.Dispose();
+            //}
         }
     }
 }
